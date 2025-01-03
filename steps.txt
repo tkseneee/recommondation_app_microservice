@@ -1,0 +1,3 @@
+#to create requirments.txt
+pip install pipreqs
+pipreqs C:\Users\tksen\Desktop\NMIMS\AppArchi\AppArchi\rating_recom\recommondation_app\
