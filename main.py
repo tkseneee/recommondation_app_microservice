@@ -16,7 +16,7 @@ def main():
         ("user_service.py", 5001),
         ("item_service.py", 5002),
         ("rating_service.py", 5003),
-        ("recommendation_model_train.py", 5004),
+        ("recommendation_model_train_service.py", 5004),
         ("recommendation_to_user.py", 5005),
     ]
     
