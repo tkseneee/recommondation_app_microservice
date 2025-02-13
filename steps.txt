@@ -1,0 +1,67 @@
+###### to create requirments.txt specific to the libraies required for executing this project ############################
+pip install pipreqs
+pipreqs \recommondation_app\ # you may required to give the full path where you have all the .py files required for this project
+#################################################################################################################################
+
+###### to push the project to github from your local machine ############################
+Create a new repository by logging into your github profile (enable the readme file option. Just create the repo with the project name)
+Keep the files in your local machine in the following structure:
+recommondation_app
+
+   --user_service.py
+   --item_service.py
+   --rating_service.py
+   --recommondation_model_service.py
+   --recommend_to_user_service.py
+   --main.py
+   --requirements.txt
+
+The above files can be pused to your github repo using the following command (run the following command from cmd prompt, make sure u installed git in your machine):
+
+git init
+git add .
+git commit -m "Initial commit for recommendation microservices"
+git remote add origin http://github.com/tkseneee/recommondation_app_microservice.git
+git branch -M main
+git push origin main --force
+
+Go to your github repo and refresh to see the changes.
+
+###### To execute/run all the micro services to perform recommendation  ############################
+Run the following commands in your terminal
+
+# To Add a user:
+curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 1, \"name\": \"Senthil\"}"
+curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 2, \"name\": \"Kumar\"}"
+curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 3, \"name\": \"Raju\"}"
+curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 4, \"name\": \"Ramya\"}"
+
+#To Add a movie:
+curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 103, \"title\": \"Avenger\"}"
+curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 104, \"title\": \"Spyderman\"}"
+curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 105, \"title\": \"Polar Express\"}"
+curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 106, \"title\": \"Lion King\"}"
+curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 101, \"title\": \"Inception\"}"
+curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 102, \"title\": \"Davincicode\"}"
+
+# To Add a rating:
+
+curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 1, \"movie_id\": 105, \"rating\": 5}"
+curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 1, \"movie_id\": 103, \"rating\": 2}"
+curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 2, \"movie_id\": 103, \"rating\": 4}"
+curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 2, \"movie_id\": 105, \"rating\": 1}"
+curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 3, \"movie_id\": 103, \"rating\": 1}"
+
+# To view user-movie ratings
+http://localhost:5003/ratings
+
+To view the simillarity matrix the model:
+http://localhost:5004/generate_similarity
+http://localhost:5004/view_similarity
+
+
+Get Recommondations: movie recomndation for user id 3 ???
+http://localhost:5005/recommend/3  
+
+
+
