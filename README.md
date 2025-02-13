@@ -10,9 +10,8 @@ This project is a **movie recommendation system** implemented using **Flask** mi
 - [Installation](#installation)
 - [Running the Microservices](#running-the-microservices)
 - [API Endpoints](#api-endpoints)
-- [Testing the Microservices](#testing-the-microservices)
-- [Contributing](#contributing)
-- [License](#license)
+- [Notes](#notes)
+- [Author](#author)
 
 ---
 
@@ -57,83 +56,81 @@ Ensure you have the following installed:
    ```bash
    git clone https://github.com/tkseneee/recommondation_app_microservice.git
    cd recommondation_app_microservice
+   ```
 
 2. **Install dependencies**
    ```bash
    pip install -r requirements.txt
+   ```
 
 ---
 
 ## Running the Microservices
 
-**To start all services at once, run:**
-   ```bash
-   python main.py
-
+To start all services at once, run:
+```bash
+python main.py
+```
 This will launch all microservices in separate subprocesses.
 
-**Alternatively, you can start each service manually:**
-
-   ```bash
-   python user_service.py
-   python item_service.py
-   python rating_service.py
-   python recommondation_model_service.py
-   python recommend_to_user_service.py
+Alternatively, you can start each service manually:
+```bash
+python user_service.py
+python item_service.py
+python rating_service.py
+python recommondation_model_service.py
+python recommend_to_user_service.py
+```
 
 ---
 
 ## API Endpoints
 
-1. **User Service (Port: 5001)**
-   ```bash
-   curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 1, \"name\": \"Senthil\"}"
-   curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 2, \"name\": \"Kumar\"}"
-   curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 3, \"name\": \"Raju\"}"
-   curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 4, \"name\": \"Ramya\"}"
+### 1. **User Service (Port: 5001)**
+- **Add a user:**
+  ```bash
+  curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{"id": 1, "name": "Senthil"}"
+  ```
 
-2. **Item Service (Port: 5002)**
-   ```bash
-   curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 103, \"title\": \"Avenger\"}"
-   curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 104, \"title\": \"Spyderman\"}"
-   curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 105, \"title\": \"Polar Express\"}"
-   curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 106, \"title\": \"Lion King\"}"
-   curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 101, \"title\": \"Inception\"}"
-   curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 102, \"title\": \"Davincicode\"}"
+### 2. **Item Service (Port: 5002)**
+- **Add a movie:**
+  ```bash
+  curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{"id": 103, "title": "Avenger"}"
+  ```
 
-3. **Rating Service (Port: 5003)**
-   ```bash
-   curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 1, \"movie_id\": 105, \"rating\": 5}"
-   curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 1, \"movie_id\": 103, \"rating\": 2}"
-   curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 2, \"movie_id\": 103, \"rating\": 4}"
-   curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 2, \"movie_id\": 105, \"rating\": 1}"
-   curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 3, \"movie_id\": 103, \"rating\": 1}"
+### 3. **Rating Service (Port: 5003)**
+- **Add a rating:**
+  ```bash
+  curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{"user_id": 1, "movie_id": 105, "rating": 5}"
+  ```
 
-4. **Recommendation Model Service (Port: 5004)**
-   To generate user-item simmilarity matrix
-   ```bash
-   curl -X GET http://localhost:5004/generate_similarity
+### 4. **Recommendation Model Service (Port: 5004)**
+- **Generate user-item similarity matrix:**
+  ```bash
+  curl -X GET http://localhost:5004/generate_similarity
+  ```
 
-   To view the simmilarity matrix
-   ```bash
-   curl -X GET http://localhost:5004/view_similarity
+- **View the similarity matrix:**
+  ```bash
+  curl -X GET http://localhost:5004/view_similarity
+  ```
 
-5. **Recommendation to User Service (Port: 5005)**
-   Get movie recommendations for a user
-   ```bash
-   curl -X GET http://localhost:5005/recommend/1
+### 5. **Recommendation to User Service (Port: 5005)**
+- **Get movie recommendations for a user:**
+  ```bash
+  curl -X GET http://localhost:5005/recommend/1
+  ```
 
 ---
 
 ## Notes
 
-**The services communicate via HTTP requests, so ensure that all services are running before making requests.**
-**You can modify the similarity calculation in recommondation_model_service.py if needed. Even can use any other recommendation model there**
+- **Ensure that all services are running before making API requests.**
+- **Modify `recommondation_model_service.py` to implement a different recommendation algorithm if needed.**
 
 ---
 
 ## Author
-**Created by Dr T.K.Senthil Kumar**
-**GitHub: tkseneee**
 
----
+**Created by Dr. T.K. Senthil Kumar**  
+**GitHub: [tkseneee](https://github.com/tkseneee)**
