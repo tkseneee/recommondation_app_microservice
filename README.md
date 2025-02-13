@@ -89,19 +89,31 @@ python recommend_to_user_service.py
 ### 1. **User Service (Port: 5001)**
 - **Add a user:**
   ```bash
-  curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{"id": 1, "name": "Senthil"}"
+  curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 1, \"name\": \"Senthil\"}"
+  curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 2, \"name\": \"Kumar\"}"
+  curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 3, \"name\": \"Raju\"}"
+  curl -X POST http://localhost:5001/users -H "Content-Type: application/json" -d "{\"id\": 4, \"name\": \"Ramya\"}"
   ```
 
 ### 2. **Item Service (Port: 5002)**
 - **Add a movie:**
   ```bash
-  curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{"id": 103, "title": "Avenger"}"
+  curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 103, \"title\": \"Avenger\"}"
+  curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 104, \"title\": \"Spyderman\"}"
+  curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 105, \"title\": \"Polar Express\"}"
+  curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 106, \"title\": \"Lion King\"}"
+  curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 101, \"title\": \"Inception\"}"
+  curl -X POST http://localhost:5002/movies -H "Content-Type: application/json" -d "{\"id\": 102, \"title\": \"Davincicode\"}" 
   ```
 
 ### 3. **Rating Service (Port: 5003)**
 - **Add a rating:**
   ```bash
-  curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{"user_id": 1, "movie_id": 105, "rating": 5}"
+  curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 1, \"movie_id\": 105, \"rating\": 5}"
+  curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 1, \"movie_id\": 103, \"rating\": 2}"
+  curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 2, \"movie_id\": 103, \"rating\": 4}"
+  curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 2, \"movie_id\": 105, \"rating\": 1}"
+  curl -X POST http://localhost:5003/ratings -H "Content-Type: application/json" -d "{\"user_id\": 3, \"movie_id\": 103, \"rating\": 1}"
   ```
 
 ### 4. **Recommendation Model Service (Port: 5004)**
@@ -118,7 +130,7 @@ python recommend_to_user_service.py
 ### 5. **Recommendation to User Service (Port: 5005)**
 - **Get movie recommendations for a user:**
   ```bash
-  curl -X GET http://localhost:5005/recommend/1
+  curl -X GET http://localhost:5005/recommend/3
   ```
 
 ---
